@@ -13,9 +13,9 @@ jobs:
       - name: test
         run: |
           ls -a
-          git s
+          git status
           git describe --always
-          
+
 
 
       - name: Build Pebble Snap

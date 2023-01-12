@@ -9,9 +9,6 @@ jobs:
     steps:
       - name: Checkout Pebble repo
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          path: 'pebble'
 
       - name: Build Pebble Snap
         id: build-pebble-snap

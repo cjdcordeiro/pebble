@@ -33,7 +33,7 @@ parts:
   
   pebble-version:
     plugin: nil
-    source: cmd
+    source: .
     override-build: |
-      snapcraftctl set-version "$(cat VERSION || ./mkversion.sh --output-only)"
+      snapcraftctl set-version "$(cat cmd/VERSION || .cmd/mkversion.sh --output-only)"
     after: [pebble]

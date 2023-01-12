@@ -13,8 +13,6 @@ jobs:
       - name: Build Pebble Snap
         id: build-pebble-snap
         uses: snapcore/action-build@v1
-        with:
-          path: pebble
 
       - name: Attach pebble snap to GH workflow execution
         uses: actions/upload-artifact@v2

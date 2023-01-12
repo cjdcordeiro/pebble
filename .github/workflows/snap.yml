@@ -9,6 +9,14 @@ jobs:
     steps:
       - name: Checkout Pebble repo
         uses: actions/checkout@v2
+      
+      - name: test
+        run: |
+          ls -a
+          git s
+          git describe --always
+          
+
 
       - name: Build Pebble Snap
         id: build-pebble-snap

@@ -30,25 +30,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build ${{ env.SNAP_NAME }} Snap
-        id: build-snap
-        uses: snapcore/action-build@v1.1.3
-
-      - uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: snapcraft-logs
-          path: |
-            ~/.cache/snapcraft/log/
-            ~/.local/state/snapcraft/log/
-            ${{ env.SNAP_NAME }}_*.txt
-
-      - name: Attach ${{ steps.build-snap.outputs.snap }} to GH workflow execution
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ steps.build-snap.outputs.snap }}
-          path: ${{ steps.build-snap.outputs.snap }}
-
   remote-build:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
@@ -79,7 +60,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     needs: [test]
-    if: github.event_name == 'push' && always()
+    if: github.event_name == 'push' && needs.test.result == 'success'
     strategy:
       fail-fast: false
       matrix:

@@ -87,7 +87,7 @@ jobs:
     steps:
       
       - id: get-snap
-        run: foo
+        run: echo foo
 
   promote:
     if: ${{ github.event_name == 'release' }}
